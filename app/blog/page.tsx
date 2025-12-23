@@ -1,7 +1,6 @@
 import { getCategories, getPostsByCategory } from '@/lib/posts'
 import Link from 'next/link'
 
-export const dynamic = 'force-dynamic'
 
 export default function BlogPage() {
   

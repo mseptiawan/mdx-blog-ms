@@ -2,7 +2,6 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getPostBySlug } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 
-export const dynamic = 'force-dynamic'
 
 export default async function Page({
   params,

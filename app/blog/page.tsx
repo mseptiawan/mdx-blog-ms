@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const dynamic = 'force-dynamic'
 
 export default function BlogPage() {
-  // 🔑 WAJIB ADA
+  // 🔑 WAJIB AD
   const categories = getCategories()
 
   return (

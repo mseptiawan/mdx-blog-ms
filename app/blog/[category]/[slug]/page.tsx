@@ -43,7 +43,7 @@ export default async function Page({
             </span>
           </nav>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-8">
-            {slug.replace(/-/g, " ")}
+            {post.title.replace(/-/g, " ")}
           </h1>
         </div>
 
@@ -180,13 +180,10 @@ export default async function Page({
                 </div>
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-6 h-6 rounded-full bg-slate-200 overflow-hidden">
-                    <img
-                      src="https://ui-avatars.com/api/?name=Erwanto"
-                      alt="author"
-                    />
+                    <img src="/mseptiawan.png" alt="author" />
                   </div>
                   <span className="text-xs text-slate-500 font-medium">
-                    Erwanto
+                    M Septiawan
                   </span>
                 </div>
                 <h4 className="font-bold text-slate-900 group-hover:text-blue-600 transition mb-2 line-clamp-2">

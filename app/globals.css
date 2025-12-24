@@ -30,7 +30,7 @@ body {
   color: #000000 !important;
   font-weight: 500;
   letter-spacing: -0.04em;
-  font-size: 3.5rem; /* Diperbesar agar lebih dominan dari H2 */
+  font-size: 2.5rem; /* Diperbesar agar lebih dominan dari H2 */
   line-height: 1.1;
   margin-top: 2rem;
   margin-bottom: 2.5rem; /* Memberikan jarak ke kalimat di bawahnya */
@@ -40,7 +40,7 @@ body {
   font-family: var(--font-poppins);
   color: #000000;
   letter-spacing: -0.02em;
-  font-size: 3rem; /* default prose h2 ~1.5rem, double jadi 3rem */
+  font-size: 2rem; /* default prose h2 ~1.5rem, double jadi 3rem */
   line-height: 1.25;
 }
 

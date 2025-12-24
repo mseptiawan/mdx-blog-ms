@@ -8,7 +8,7 @@ export default function Home() {
       <main className="flex w-full max-w-5xl flex-col items-center justify-center py-20 px-6 text-center sm:text-left sm:items-start">
         {/* Badge Kecil (Optional) */}
         <div className="mb-6 inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-600">
-          <span className="mr-2">🚀</span> Digital Strategy & Innovation
+          Digital Strategy & Innovation
         </div>
 
         {/* Hero Title */}
@@ -19,9 +19,9 @@ export default function Home() {
           </h1>
           <p className="max-w-xl text-lg md:text-xl leading-relaxed text-slate-500">
             Selamat datang di{" "}
-            <span className="font-bold text-slate-900">MyBlog</span>. Tempat
-            saya berbagi insight mendalam tentang teknologi, manajemen karir,
-            dan strategi pertumbuhan bisnis.
+            <span className="font-bold text-slate-900">Pemenang Karir</span>.
+            Tempat saya berbagi insight mendalam tentang teknologi, manajemen
+            karir, dan strategi pertumbuhan bisnis.
           </p>
         </div>
 

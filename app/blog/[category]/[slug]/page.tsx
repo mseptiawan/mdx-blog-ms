@@ -1,3 +1,5 @@
+import ShareButtons from "@/components/ShareButtons";
+
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getPostBySlug, getPostsByCategory } from "@/lib/posts";
 import { notFound } from "next/navigation";
@@ -102,25 +104,7 @@ export default async function Page({
               </div>
             </div>
             {/* Share Section */}
-            <div className="mt-8 flex items-center gap-4">
-              <span className="text-sm font-bold text-slate-900">
-                Bagikan artikel ini:
-              </span>
-              <div className="flex gap-2">
-                <button className="p-2 rounded-full bg-slate-100 text-green-600 hover:bg-green-50 transition">
-                  <MessageCircle size={20} />
-                </button>
-                <button className="p-2 rounded-full bg-slate-100 text-blue-600 hover:bg-blue-50 transition">
-                  <Facebook size={20} />
-                </button>
-                <button className="p-2 rounded-full bg-slate-100 text-sky-500 hover:bg-sky-50 transition">
-                  <Twitter size={20} />
-                </button>
-                <button className="p-2 rounded-full bg-slate-100 text-blue-800 hover:bg-blue-50 transition">
-                  <Linkedin size={20} />
-                </button>
-              </div>
-            </div>
+            <ShareButtons title={post.title} />
           </div>
 
           {/* RIGHT SIDEBAR: Promo Product */}
@@ -131,7 +115,7 @@ export default async function Page({
               {/* Container Gambar dengan aspek rasio yang pas */}
               <div className="relative h-56 rounded-2xl mb-6 overflow-hidden bg-slate-50">
                 <Image
-                  src="/images/ebook/ebook1.webp"
+                  src="/images/ebook/template1.png"
                   alt="Ebook Strategi Bisnis 2025"
                   fill
                   priority
@@ -140,20 +124,28 @@ export default async function Page({
               </div>
 
               {/* Teks Judul - Menggunakan slate-900 agar kontras tapi elegan */}
-              <h4 className="text-lg font-bold text-slate-900 mb-2 leading-tight">
-                Ebook Strategi <br /> Bisnis 2025
+              <h4 className="text-xl font-bold text-slate-900 mb-2 leading-tight">
+                Template Estimasi Modal <br /> & Balik Modal
               </h4>
 
-              {/* Deskripsi - Warna slate-500 agar lebih soft */}
+              {/* Deskripsi - Fokus pada benefit utama */}
               <p className="text-xs leading-relaxed text-slate-500 mb-6">
-                Panduan praktis mengelola operasional dan strategi UKM untuk
-                tumbuh lebih cepat dan terukur.
+                Solusi praktis menyusun anggaran dan menghitung BEP (Payback
+                Period) secara otomatis. Cocok untuk berbagai jenis bisnis
+                produk maupun jasa agar lebih terukur dan minim risiko.
               </p>
 
               {/* Tombol - Warna Slate-900 agar senada dengan tema premium kita */}
-              <button className="w-full py-3 bg-slate-900 text-white text-sm rounded-xl font-bold hover:bg-slate-500 shadow-lg shadow-slate-200 hover:shadow-blue-500/20 transition-all duration-300 active:scale-95">
-                Dapatkan Sekarang
-              </button>
+              <a
+                href="https://lynk.id/mseptiawan/49zoRV3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full"
+              >
+                <button className="w-full py-3 bg-slate-900 text-white text-sm rounded-xl font-bold hover:bg-slate-500 shadow-lg shadow-slate-200 hover:shadow-blue-500/20 transition-all duration-300 active:scale-95">
+                  Dapatkan Sekarang
+                </button>
+              </a>
             </div>
           </aside>
         </div>
@@ -206,7 +198,7 @@ export default async function Page({
                   </div>
 
                   <h4 className="text-xl font-bold text-black leading-tight mb-6 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                    {post.slug.replace(/-/g, " ")}
+                    {post.title.replace(/-/g, " ")}
                   </h4>
 
                   {/* Author & Date di bagian bawah card */}

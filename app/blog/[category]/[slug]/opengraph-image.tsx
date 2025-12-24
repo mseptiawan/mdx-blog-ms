@@ -2,7 +2,8 @@ import { ImageResponse } from "next/og";
 import { getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
-export const runtime = "edge"; // Digunakan untuk performa lebih baik di Edge
+// PERBAIKAN UTAMA: Gunakan nodejs karena kita memanggil getPostBySlug yang pakai 'fs'
+export const runtime = "nodejs";
 
 export const alt = "Preview Artikel Blog";
 export const size = {
@@ -15,16 +16,37 @@ export const contentType = "image/png";
 export default async function Image({
   params,
 }: {
-  params: { category: string; slug: string };
+  params:
+    | Promise<{ category: string; slug: string }>
+    | { category: string; slug: string };
 }) {
-  const { category, slug } = params;
+  // Next.js terbaru menyarankan untuk await params
+  const resolvedParams = await params;
+  const { category, slug } = resolvedParams;
+
   const post = getPostBySlug(category, slug);
 
   if (!post) {
-    notFound(); // Atau bisa return ImageResponse default jika post tidak ditemukan
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#0F172A",
+            color: "white",
+          }}
+        >
+          <h1>Post Not Found</h1>
+        </div>
+      ),
+      { ...size }
+    );
   }
 
-  // Ambil huruf pertama judul untuk background inisial
   const initial = post.title.charAt(0).toUpperCase();
 
   return new ImageResponse(
@@ -37,16 +59,15 @@ export default async function Image({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#0F172A", // Warna latar belakang gelap
+          backgroundColor: "#0F172A",
           fontSize: 32,
           fontWeight: 600,
           color: "white",
           padding: 50,
           gap: 20,
-          fontFamily: "sans-serif", // Ganti jika ingin custom font
         }}
       >
-        {/* Logo atau Inisial (Optional) */}
+        {/* Logo / Inisial */}
         <div
           style={{
             display: "flex",
@@ -55,7 +76,7 @@ export default async function Image({
             width: 100,
             height: 100,
             borderRadius: "50%",
-            backgroundColor: "#4F46E5", // Warna primer
+            backgroundColor: "#4F46E5",
             color: "white",
             fontSize: 48,
             fontWeight: "bold",
@@ -72,12 +93,6 @@ export default async function Image({
             fontWeight: "bold",
             textAlign: "center",
             lineHeight: 1.2,
-            maxHeight: "70%",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "box",
-            WebkitLineClamp: 2, // Batasi 2 baris
-            WebkitBoxOrient: "vertical",
             color: "#F8FAFC",
           }}
         >
@@ -89,24 +104,26 @@ export default async function Image({
           style={{
             display: "flex",
             fontSize: 30,
-            color: "#CBD5E1", // Warna teks abu-abu terang
+            color: "#CBD5E1",
             marginTop: 20,
           }}
         >
           <span style={{ fontWeight: "bold" }}>
-            {post.category.toUpperCase().replace("-", " ")}
+            {category.toUpperCase().replace("-", " ")}
           </span>
           <span style={{ margin: "0 15px" }}>•</span>
           <span>
-            {new Date(post.date).toLocaleDateString("id-ID", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+            {post.date
+              ? new Date(post.date).toLocaleDateString("id-ID", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              : ""}
           </span>
         </div>
 
-        {/* Nama Website/Author (Optional) */}
+        {/* Brand */}
         <div
           style={{
             position: "absolute",

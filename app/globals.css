@@ -1,1 +1,11 @@
 @import "tailwindcss";
+/* globals.css */
+.prose p {
+  margin-bottom: 1.5rem !important;
+  line-height: 1.8;
+}
+
+.prose h2 {
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.25rem !important;
+}

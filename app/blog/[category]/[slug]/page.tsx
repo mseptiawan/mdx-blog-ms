@@ -74,24 +74,11 @@ export default async function Page({
               />
             </div>
             {/* Prose Content */}
-            <article
-              className="
-  prose prose-slate max-w-none 
-  /* Memberikan jarak ekstra antar paragraf jika Markdown kurang baris kosong */
-  prose-p:my-6 
-  prose-headings:mt-12 prose-headings:mb-6
-  prose-li:my-2
-  prose-img:my-10
-  
-  prose-headings:text-slate-900 prose-headings:font-bold 
-  prose-p:text-slate-600 prose-p:leading-relaxed prose-p:text-lg
-  prose-a:text-blue-600 prose-img:rounded-3xl prose-img:shadow-lg
-"
-            >
-              <article className="prose prose-slate max-w-none">
-                <MDXRemote source={post.content} />
-              </article>
+
+            <article className="prose max-w-none">
+              <MDXRemote source={post.content} />
             </article>
+
             {/* Author Box */}
             <div className="mt-16 p-8 bg-blue-50 rounded-3xl flex items-center gap-6">
               <div className="w-16 h-16 rounded-full bg-slate-300 overflow-hidden">
@@ -99,7 +86,7 @@ export default async function Page({
               </div>
               <div>
                 <h4 className="font-bold text-slate-900">M Septiawan</h4>
-                <p className="text-sm text-slate-500">IT </p>
+                <p className="text-sm text-slate-500">System Analyts, </p>
               </div>
             </div>
             {/* Share Section */}

@@ -21,7 +21,7 @@ const poppins = Poppins({
 // 2. Pengaturan Metadata SEO Lengkap
 export const metadata: Metadata = {
   // Ganti URL ini dengan domain asli Anda setelah deploy
-  metadataBase: new URL("https://pemenangkarir.com"),
+  metadataBase: new URL("https://mdx-blog-ms.vercel.app"),
 
   title: {
     default: "Pemenang Karir | Strategi Bisnis & Digital Marketing",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "Pemenang Karir - Strategi Bisnis & Marketing",
     description:
       "Belajar strategi bisnis dan digital marketing bersama M Septiawan.",
-    url: "https://pemenangkarir.com",
+    url: "https://mdx-blog-ms.vercel.app",
     siteName: "Pemenang Karir",
     locale: "id_ID",
     type: "website",

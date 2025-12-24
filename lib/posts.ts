@@ -3,7 +3,14 @@ import path from "path";
 import matter from "gray-matter";
 
 const BLOG_PATH = path.join(process.cwd(), "content/blog");
-
+export interface Post {
+  slug: string;
+  category: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  date: string | null;
+}
 // ==========================
 // Ambil daftar kategori
 // ==========================
@@ -55,4 +62,22 @@ export function getPostBySlug(category: string, slug: string) {
     date: data.date ?? null,
     author: data.author ?? "Admin",
   };
+}
+// Tambahkan di bagian paling bawah lib/posts.ts
+
+// ==========================
+// Ambil SEMUA postingan dari SEMUA kategori (UNTUK SITEMAP)
+// ==========================
+export function getAllPosts(): Post[] {
+  const categories = getCategories();
+
+  // Berikan tipe : Post[] di sini
+  let allPosts: Post[] = [];
+
+  categories.forEach((category) => {
+    const posts = getPostsByCategory(category);
+    allPosts = [...allPosts, ...posts];
+  });
+
+  return allPosts;
 }

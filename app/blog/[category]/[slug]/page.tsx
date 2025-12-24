@@ -20,7 +20,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   // Ganti dengan domain asli Anda saat sudah deploy
-  const baseUrl = "https://website-anda.com";
+  const baseUrl = "https://mdx-blog-ms.vercep.app";
   const shareUrl = `${baseUrl}/blog/${category}/${slug}`;
   const imageUrl = `${baseUrl}${post.thumbnail}`;
 

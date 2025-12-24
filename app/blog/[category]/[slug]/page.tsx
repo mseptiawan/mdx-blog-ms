@@ -19,10 +19,11 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  // Ganti dengan domain asli Anda saat sudah deploy
-  const baseUrl = "https://mdx-blog-ms.vercep.app";
+  const baseUrl = "https://website-anda.com"; // Ganti dengan domain asli Anda
   const shareUrl = `${baseUrl}/blog/${category}/${slug}`;
-  const imageUrl = `${baseUrl}${post.thumbnail}`;
+
+  // Ubah bagian ini untuk mengarah ke opengraph-image.tsx
+  const ogImage = `${baseUrl}/blog/${category}/${slug}/opengraph-image.png`;
 
   return {
     title: `${post.title} | Blog M Septiawan`,
@@ -34,13 +35,13 @@ export async function generateMetadata({
       siteName: "M Septiawan Blog",
       locale: "id_ID",
       type: "article",
-      publishedTime: "2025-12-24T00:00:00.000Z",
+      publishedTime: post.date, // Ambil dari metadata post
       authors: ["M Septiawan"],
       images: [
         {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
+          url: ogImage,
+          width: 1200, // Harus sesuai dengan ukuran di opengraph-image.tsx
+          height: 630, // Harus sesuai dengan ukuran di opengraph-image.tsx
           alt: post.title,
         },
       ],
@@ -49,7 +50,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [imageUrl],
+      images: [ogImage],
     },
   };
 }

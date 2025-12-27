@@ -5,17 +5,17 @@ export default function BlogPage() {
   const categories = getCategories();
 
   return (
-    // Background putih bersih dengan teks slate gelap
     <main className="min-h-screen bg-white text-slate-900 antialiased selection:bg-blue-100">
-      <div className="max-w-5xl mx-auto px-6 py-24">
-        {/* Header Section - Dibuat lebih elegan & minimalis */}
-        <header className="mb-20 border-b border-slate-100 pb-12">
-          <h1 className="text-5xl md:text-7xl font-bold text-slate-900 tracking-tighter mb-6">
-            Writings<span className="text-blue-600">.</span>
+      {/* Container disamakan dengan Navbar: max-w-6xl */}
+      <div className="max-w-6xl mx-auto px-6 py-24">
+        {/* Header Section */}
+        <header className="mb-16 border-b border-slate-100 pb-12">
+          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 tracking-tighter mb-6">
+            Catatan Strategis<span className="text-blue-600">.</span>
           </h1>
-          <p className="text-slate-500 text-lg md:text-xl max-w-2xl leading-relaxed">
-            Berbagi pemikiran mengenai bisnis, strategi, dan pengembangan
-            teknologi secara mendalam.
+          <p className="text-slate-500 text-lg max-w-2xl leading-relaxed">
+            Eksplorasi mendalam mengenai manajemen karir modern, efisiensi
+            operasional, dan navigasi profesional di era digital.
           </p>
         </header>
 
@@ -23,58 +23,41 @@ export default function BlogPage() {
           const posts = getPostsByCategory(cat);
 
           return (
-            <section key={cat} className="mb-24">
-              {/* Category Title - Huruf kecil ke besar dengan spasi lebar (Clean Look) */}
-              <div className="flex items-center gap-6 mb-10">
-                <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-blue-600 whitespace-nowrap">
+            <section key={cat} className="mb-20">
+              {/* Category Label */}
+              <div className="flex items-center gap-4 mb-8">
+                <span className="h-px w-6 bg-blue-600"></span>
+                <h2 className="text-xs font-black uppercase tracking-[0.4em] text-slate-400">
                   {cat.replace("-", " ")}
                 </h2>
-                <div className="h-[1px] w-full bg-slate-100"></div>
               </div>
 
-              {/* Post Grid Card */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Post Grid - 4 Kolom Pas dengan max-w-6xl */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {posts.map((post) => (
                   <Link
                     key={post.slug}
                     href={`/blog/${cat}/${post.slug}`}
-                    className="group relative block p-8 rounded-3xl border border-slate-100 bg-white hover:bg-slate-50/50 hover:border-slate-200 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-blue-500/5"
+                    className="group flex flex-col justify-between p-5 rounded-2xl border border-slate-100 bg-white hover:bg-slate-50 transition-all duration-300 hover:border-blue-100"
                   >
-                    {/* Icon Arrow - Muncul saat hover */}
-                    <div className="absolute top-8 right-8 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M7 7h10v10" />
-                        <path d="M7 17 17 7" />
-                      </svg>
+                    <div>
+                      {/* Font size disesuaikan agar pas di 4 kolom */}
+                      <h3 className="text-base font-bold text-slate-900 mb-2 capitalize group-hover:text-blue-600 transition-colors leading-snug">
+                        {post.slug.replace(/-/g, " ")}
+                      </h3>
+
+                      <p className="text-slate-500 text-[13px] leading-relaxed mb-4 line-clamp-3">
+                        Membahas implementasi {post.slug.replace(/-/g, " ")}{" "}
+                        dalam konteks pengembangan profesional dan efisiensi.
+                      </p>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-slate-900 mb-3 capitalize group-hover:text-blue-600 transition-colors leading-tight">
-                      {post.slug.replace(/-/g, " ")}
-                    </h3>
-
-                    <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-2">
-                      Pelajari lebih dalam mengenai{" "}
-                      {post.slug.replace(/-/g, " ")} untuk meningkatkan
-                      efisiensi dan strategi kerja Anda melalui pendekatan yang
-                      modern.
-                    </p>
-
-                    <div className="flex items-center gap-4">
-                      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 uppercase tracking-widest">
-                        5 Mins Read
+                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-50">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight">
+                        Insight
                       </span>
-                      <span className="text-slate-400 text-xs font-medium">
-                        Dec 23, 2025
+                      <span className="text-slate-400 text-[10px]">
+                        Des 2025
                       </span>
                     </div>
                   </Link>

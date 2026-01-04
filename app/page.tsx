@@ -133,18 +133,6 @@ export default function Home() {
                             className="transition-transform group-hover:translate-x-1"
                           />
                         </div>
-
-                        {/* Menampilkan tanggal dengan pengaman agar tidak error Object Date */}
-                        <span className="text-slate-400 text-[9px] font-medium">
-                          {post.date &&
-                          typeof post.date !== "string" &&
-                          "toLocaleDateString" in (post.date as any)
-                            ? (post.date as any).toLocaleDateString("id-ID", {
-                                month: "short",
-                                year: "numeric",
-                              })
-                            : String(post.date || "2026")}
-                        </span>
                       </div>
                     </div>
                   </Link>

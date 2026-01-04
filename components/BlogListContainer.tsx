@@ -47,15 +47,6 @@ export default function BlogListContainer({
                 <div className="flex items-center gap-1 text-[#4A5DDF] font-bold text-[9px] uppercase">
                   Baca Artikel <ArrowRight size={10} />
                 </div>
-                <span>
-                  {post.date instanceof Date
-                    ? post.date.toLocaleDateString("id-ID", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })
-                    : post.date}
-                </span>
               </div>
             </div>
           </Link>

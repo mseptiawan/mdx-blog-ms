@@ -32,13 +32,21 @@ export function getPostsByCategory(category: string) {
     const source = fs.readFileSync(filePath, "utf8");
     const { data } = matter(source);
 
+    // Di dalam getPostsByCategory
     return {
       slug: file.replace(".mdx", ""),
       category,
       title: data.title ?? file.replace(".mdx", ""),
       description: data.description ?? "",
       thumbnail: data.thumbnail ?? "/images/default-thumbnail.jpg",
-      date: data.date ?? null,
+      // Ubah baris ini:
+      date: data.date ? String(data.date) : null,
+    };
+
+    // Dan di dalam getPostBySlug juga ubah:
+    return {
+      // ... field lainnya
+      date: data.date ? String(data.date) : null,
     };
   });
 }

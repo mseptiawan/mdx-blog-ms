@@ -109,22 +109,40 @@ export default function Home() {
 
                     {/* KONTEN CARD */}
                     <div className="flex flex-1 flex-col p-5">
+                      {/* Judul Artikel dengan pengaman slug */}
                       <h3 className="text-base font-bold text-slate-900 mb-2 capitalize group-hover:text-[#4A5DDF] transition-colors leading-snug line-clamp-2">
-                        {post.title || post.slug.replace(/-/g, " ")}
+                        {post.title ||
+                          post.slug?.replace(/-/g, " ") ||
+                          "Untitled Post"}
                       </h3>
 
+                      {/* Deskripsi Artikel dengan pengaman slug */}
                       <p className="text-slate-500 text-[12px] leading-relaxed mb-6 line-clamp-2">
                         {post.description ||
-                          `Pelajari lebih lanjut mengenai ${post.slug.replace(
-                            /-/g,
-                            " "
-                          )} untuk optimasi bisnis Anda.`}
+                          `Pelajari lebih lanjut mengenai ${
+                            post.slug?.replace(/-/g, " ") || "strategi ini"
+                          } untuk optimasi bisnis Anda.`}
                       </p>
 
+                      {/* Footer Card */}
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-50">
                         <div className="flex items-center gap-1 text-[#4A5DDF] font-bold text-[10px] uppercase">
-                          Baca <ArrowRight size={10} />
+                          Baca{" "}
+                          <ArrowRight
+                            size={10}
+                            className="transition-transform group-hover:translate-x-1"
+                          />
                         </div>
+
+                        {/* Menampilkan tanggal dengan pengaman agar tidak error Object Date */}
+                        <span className="text-slate-400 text-[10px] font-medium">
+                          {post.date instanceof Date
+                            ? post.date.toLocaleDateString("id-ID", {
+                                month: "short",
+                                year: "numeric",
+                              })
+                            : String(post.date || "Jan 2026")}
+                        </span>
                       </div>
                     </div>
                   </Link>

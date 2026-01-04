@@ -1,36 +1,42 @@
 import { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getCategories } from "@/lib/posts";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Ganti dengan domain asli Anda
-  const baseUrl = "https://mdx-blog-ms.vercel.app";
+  const baseUrl = "https://blog-pemenangkarir.vercel.app";
 
-  // 1. Ambil semua post menggunakan fungsi yang baru kita buat
+  // Ambil semua postingan dari lib/posts.ts
   const posts = getAllPosts();
 
-  // 2. Map data post menjadi format sitemap
-  const postUrls = posts.map((post) => ({
+  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.category}/${post.slug}`,
     lastModified: post.date ? new Date(post.date) : new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.7, // Prioritas artikel sedikit di bawah halaman utama
+    changeFrequency: "monthly",
+    priority: 0.7,
   }));
 
-  // 3. Daftar halaman statis (Home, Blog List, dll)
-  const staticPages = [
+  // Daftar kategori
+  const categories = getCategories();
+  const categoryEntries: MetadataRoute.Sitemap = categories.map((cat) => ({
+    url: `${baseUrl}/blog/${cat}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 1.0,
+      changeFrequency: "daily",
+      priority: 1,
     },
     {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.8,
+      changeFrequency: "daily",
+      priority: 0.9,
     },
+    ...categoryEntries,
+    ...postEntries,
   ];
-
-  return [...staticPages, ...postUrls];
 }

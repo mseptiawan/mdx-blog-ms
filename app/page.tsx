@@ -135,13 +135,15 @@ export default function Home() {
                         </div>
 
                         {/* Menampilkan tanggal dengan pengaman agar tidak error Object Date */}
-                        <span className="text-slate-400 text-[10px] font-medium">
-                          {post.date instanceof Date
-                            ? post.date.toLocaleDateString("id-ID", {
+                        <span className="text-slate-400 text-[9px] font-medium">
+                          {post.date &&
+                          typeof post.date !== "string" &&
+                          "toLocaleDateString" in (post.date as any)
+                            ? (post.date as any).toLocaleDateString("id-ID", {
                                 month: "short",
                                 year: "numeric",
                               })
-                            : String(post.date || "Jan 2026")}
+                            : String(post.date || "2026")}
                         </span>
                       </div>
                     </div>

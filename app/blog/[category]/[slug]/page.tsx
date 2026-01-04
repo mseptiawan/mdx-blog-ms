@@ -186,20 +186,16 @@ export default async function Page({
 
                 {/* CONTENT */}
                 <div className="flex flex-1 flex-col p-5">
-                  {/* Judul: Menggunakan optional chaining untuk mencegah error build */}
                   <h4 className="text-sm font-bold text-slate-900 mb-2 capitalize group-hover:text-[#4A5DDF] transition-colors leading-snug line-clamp-2">
-                    {post.title ||
-                      post.slug?.replace(/-/g, " ") ||
-                      "Untitled Post"}
+                    {/* Gunakan Optional Chaining (?.) dan Fallback String */}
+                    {post.title || post.slug?.replace(/-/g, " ") || "Untitled"}
                   </h4>
 
-                  {/* Deskripsi: Ukuran font disesuaikan agar pas di 4 kolom */}
                   <p className="text-slate-500 text-[11px] leading-relaxed mb-6 line-clamp-2">
                     {post.description ||
-                      `Pelajari lebih lanjut mengenai strategi otomasi bisnis terbaru untuk industri ${category}.`}
+                      `Pelajari lebih lanjut mengenai strategi otomasi bisnis terbaru.`}
                   </p>
 
-                  {/* Footer Card: Baca Selengkapnya & Tanggal */}
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-50">
                     <div className="flex items-center gap-1 text-[#4A5DDF] font-bold text-[9px] uppercase">
                       Baca{" "}
@@ -208,11 +204,11 @@ export default async function Page({
                         className="transition-transform group-hover:translate-x-1"
                       />
                     </div>
-
-                    {/* Tanggal: Dipastikan aman dari error 'Objects are not valid' */}
                     <span className="text-slate-400 text-[9px] font-medium">
-                      {post.date instanceof Date
-                        ? post.date.toLocaleDateString("id-ID", {
+                      {post.date &&
+                      typeof post.date !== "string" &&
+                      "toLocaleDateString" in (post.date as any)
+                        ? (post.date as any).toLocaleDateString("id-ID", {
                             month: "short",
                             year: "numeric",
                           })

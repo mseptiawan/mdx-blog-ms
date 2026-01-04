@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
-import Image from "image"; // Sesuaikan jika menggunakan Next.js Image
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {

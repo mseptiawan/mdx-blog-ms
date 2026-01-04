@@ -3,6 +3,8 @@ import path from "path";
 import matter from "gray-matter";
 
 const BLOG_PATH = path.join(process.cwd(), "content/blog");
+
+// Definisi Interface yang ketat
 export interface Post {
   slug: string;
   category: string;
@@ -11,10 +13,18 @@ export interface Post {
   thumbnail: string;
   date: string | null;
 }
+
+// Interface tambahan untuk Detail Page (karena ada 'content')
+export interface PostDetail extends Post {
+  content: string;
+  author: string;
+}
+
 // ==========================
 // Ambil daftar kategori
 // ==========================
 export function getCategories(): string[] {
+  if (!fs.existsSync(BLOG_PATH)) return [];
   return fs
     .readdirSync(BLOG_PATH)
     .filter((file) => fs.statSync(path.join(BLOG_PATH, file)).isDirectory());
@@ -23,8 +33,11 @@ export function getCategories(): string[] {
 // ==========================
 // Ambil daftar posting per kategori (UNTUK LIST)
 // ==========================
-export function getPostsByCategory(category: string) {
+export function getPostsByCategory(category: string): Post[] {
   const categoryPath = path.join(BLOG_PATH, category);
+
+  if (!fs.existsSync(categoryPath)) return [];
+
   const files = fs.readdirSync(categoryPath).filter((f) => f.endsWith(".mdx"));
 
   return files.map((file) => {
@@ -32,20 +45,14 @@ export function getPostsByCategory(category: string) {
     const source = fs.readFileSync(filePath, "utf8");
     const { data } = matter(source);
 
-    // Di dalam getPostsByCategory
+    // Memastikan return value sesuai dengan interface Post
     return {
       slug: file.replace(".mdx", ""),
       category,
-      title: data.title ?? file.replace(".mdx", ""),
-      description: data.description ?? "",
-      thumbnail: data.thumbnail ?? "/images/default-thumbnail.jpg",
-      // Ubah baris ini:
-      date: data.date ? String(data.date) : null,
-    };
-
-    // Dan di dalam getPostBySlug juga ubah:
-    return {
-      // ... field lainnya
+      title: String(data.title ?? file.replace(".mdx", "")),
+      description: String(data.description ?? ""),
+      thumbnail: String(data.thumbnail ?? "/images/default-thumbnail.jpg"),
+      // Konversi date ke string agar tidak error 'Object' saat render
       date: data.date ? String(data.date) : null,
     };
   });
@@ -54,38 +61,44 @@ export function getPostsByCategory(category: string) {
 // ==========================
 // Ambil 1 post lengkap (DETAIL PAGE)
 // ==========================
-export function getPostBySlug(category: string, slug: string) {
+export function getPostBySlug(category: string, slug: string): PostDetail {
   const filePath = path.join(BLOG_PATH, category, `${slug}.mdx`);
   const source = fs.readFileSync(filePath, "utf8");
 
   const { content, data } = matter(source);
 
   return {
-    content, // untuk <MDXRemote />
+    content,
     slug,
     category,
-    title: data.title ?? slug.replace(/-/g, " "),
-    description: data.description ?? "",
-    thumbnail: data.thumbnail ?? "/images/default-thumbnail.jpg",
-    date: data.date ?? null,
-    author: data.author ?? "Admin",
+    title: String(data.title ?? slug.replace(/-/g, " ")),
+    description: String(data.description ?? ""),
+    thumbnail: String(data.thumbnail ?? "/images/default-thumbnail.jpg"),
+    date: data.date ? String(data.date) : null,
+    author: String(data.author ?? "Admin"),
   };
 }
-// Tambahkan di bagian paling bawah lib/posts.ts
 
 // ==========================
-// Ambil SEMUA postingan dari SEMUA kategori (UNTUK SITEMAP)
+// Ambil SEMUA postingan (UNTUK SITEMAP / SEARCH)
 // ==========================
 export function getAllPosts(): Post[] {
   const categories = getCategories();
-
-  // Berikan tipe : Post[] di sini
   let allPosts: Post[] = [];
 
   categories.forEach((category) => {
     const posts = getPostsByCategory(category);
-    allPosts = [...allPosts, ...posts];
+    // Filter tambahan untuk memastikan tidak ada data korup yang masuk
+    const validPosts = posts.filter(
+      (post): post is Post =>
+        typeof post.slug === "string" && post.slug.length > 0
+    );
+    allPosts = [...allPosts, ...validPosts];
   });
 
-  return allPosts;
+  // Urutkan berdasarkan tanggal terbaru jika ada
+  return allPosts.sort((a, b) => {
+    if (!a.date || !b.date) return 0;
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
 }

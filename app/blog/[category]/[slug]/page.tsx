@@ -10,21 +10,30 @@ import ShareButtons from "@/components/ShareButtons";
 import { getTocFromMdx } from "@/lib/getToc";
 
 // 1. FUNGSI GENERATE METADATA (Untuk Preview WhatsApp/Social Media)
+// 1. FUNGSI GENERATE METADATA (Untuk Preview WhatsApp/Social Media)
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ category: string; slug: string }>;
 }): Promise<Metadata> {
+  // Tunggu params (Next.js 15+ mewajibkan await pada params)
   const { category, slug } = await params;
+
+  // Ambil data post
   const post = getPostBySlug(category, slug);
 
-  if (!post) return {};
+  // Jika post tidak ditemukan, kembalikan metadata dasar
+  if (!post) {
+    return {
+      title: "Post Not Found",
+    };
+  }
 
-  const baseUrl = "https://website-anda.com"; // Ganti dengan domain asli Anda
+  const baseUrl = "https://blog-pemenangkarir.vercel.app"; // Ganti dengan domain asli Anda
   const shareUrl = `${baseUrl}/blog/${category}/${slug}`;
 
-  // Ubah bagian ini untuk mengarah ke opengraph-image.tsx
-  const ogImage = `${baseUrl}/blog/${category}/${slug}/opengraph-image.png`;
+  // Mengarah ke file opengraph-image.tsx yang ada di folder [slug]
+  const ogImage = `${baseUrl}/blog/${category}/${slug}/opengraph-image`;
 
   return {
     title: `${post.title} | Blog M Septiawan`,
@@ -36,13 +45,19 @@ export async function generateMetadata({
       siteName: "M Septiawan Blog",
       locale: "id_ID",
       type: "article",
-      publishedTime: post.date, // Ambil dari metadata post
+
+      /** * PERBAIKAN UTAMA:
+       * Next.js OpenGraph tidak menerima 'null'.
+       * Kita konversi 'null' menjadi 'undefined' agar valid secara tipe data.
+       */
+      publishedTime: post.date ?? undefined,
+
       authors: ["M Septiawan"],
       images: [
         {
           url: ogImage,
-          width: 1200, // Harus sesuai dengan ukuran di opengraph-image.tsx
-          height: 630, // Harus sesuai dengan ukuran di opengraph-image.tsx
+          width: 1200,
+          height: 630,
           alt: post.title,
         },
       ],

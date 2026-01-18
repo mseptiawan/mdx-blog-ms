@@ -37,15 +37,9 @@ export default function Navbar() {
         {/* LOGO - KIRI */}
         <div className="flex items-center gap-2 relative z-[130]">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 md:w-10 md:h-10 bg-[#4A5DDF] rounded-lg flex items-center justify-center overflow-hidden shadow-lg shadow-indigo-100">
-              <img
-                src="/logo.png"
-                alt="PemenangKarir Logo"
-                className="w-full h-full object-contain"
-              />
-            </div>
+      
             <span className="text-base md:text-xl font-bold text-slate-900 tracking-tight">
-              Pemenang<span className="text-[#4A5DDF]">Karir</span>
+              Sanyru
             </span>
           </Link>
         </div>
@@ -63,7 +57,7 @@ export default function Navbar() {
         {/* CTA - KANAN */}
         <div className="hidden md:block">
           <a
-            href="https://pemenangkarir.vercel.app"
+            href="https://sanyru.vercel.app"
             className="bg-[#4A5DDF] text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-[#3b4ab3] transition-all flex items-center gap-2 active:scale-95 shadow-lg shadow-indigo-100"
           >
             Layanan Utama <ArrowRight size={16} />
@@ -100,14 +94,14 @@ export default function Navbar() {
           <div className="w-12 h-[1px] bg-slate-100"></div>
 
           <a
-            href="https://pemenangkarir.vercel.app"
+            href="https://sanyru.vercel.app"
             className="w-full bg-[#4A5DDF] text-white py-4 rounded-2xl font-bold text-base shadow-lg shadow-indigo-100 flex items-center justify-center gap-3 active:scale-95 transition-all"
           >
             Lihat Layanan <ArrowRight size={18} />
           </a>
 
           <p className="text-center text-slate-400 text-[10px] mt-8 uppercase tracking-[0.2em]">
-            © 2026 PemenangKarir
+            © 2026 Sanyru
           </p>
         </div>
       </div>

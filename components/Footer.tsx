@@ -43,7 +43,7 @@ export default function Footer() {
           {/* Brand Section - 5 Columns */}
           <div className="lg:col-span-5 space-y-6">
             <h3 className="text-2xl font-black text-slate-900 tracking-tighter flex items-center gap-2">
-              Pemenang<span className="text-[#4A5DDF]">Karir</span>
+              Sanyru
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
             </h3>
             <p className="text-base text-slate-500 leading-relaxed max-w-sm">
@@ -122,7 +122,7 @@ export default function Footer() {
         <div className="pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-4">
             <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
-              © {year} PemenangKarir
+              © {year} Sanyru
             </p>
             <span className="hidden md:block w-1 h-1 bg-slate-200 rounded-full"></span>
             <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">

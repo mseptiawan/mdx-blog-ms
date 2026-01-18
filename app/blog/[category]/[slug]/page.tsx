@@ -29,7 +29,7 @@ export async function generateMetadata({
     };
   }
 
-  const baseUrl = "https://blog-pemenangkarir.vercel.app"; // Ganti dengan domain asli Anda
+  const baseUrl = "https://blog-sanyru.vercel.app"; // Ganti dengan domain asli Anda
   const shareUrl = `${baseUrl}/blog/${category}/${slug}`;
 
   // Mengarah ke file opengraph-image.tsx yang ada di folder [slug]

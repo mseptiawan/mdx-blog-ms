@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { getAllPosts, getCategories } from "@/lib/posts";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://blog-pemenangkarir.vercel.app";
+  const baseUrl = "https://blog-sanyru.vercel.app";
 
   // Ambil semua postingan dari lib/posts.ts
   const posts = getAllPosts();

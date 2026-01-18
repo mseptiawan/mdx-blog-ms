@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/dashboard", "/api", "/login"],
       },
     ],
-    sitemap: "https://blog-pemenangkarir.vercel.app/sitemap.xml", // Sesuaikan domain lu
+    sitemap: "https://blog-sanyru.vercel.app/sitemap.xml", // Sesuaikan domain lu
   };
 }

@@ -18,10 +18,10 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://blog-pemenangkarir.vercel.app"),
+  metadataBase: new URL("https://blog-sanyru.vercel.app"),
   title: {
-    default: "Pemenang Karir | Strategi Bisnis & Digital Marketing",
-    template: "%s | Pemenang Karir",
+    default: "Sanyru | Strategi Bisnis & Digital Marketing",
+    template: "%s | Sanyru",
   },
   description:
     "Solusi praktis strategi bisnis, digital marketing, dan operasional UKM untuk membantu bisnis Anda tumbuh lebih cepat dan terukur.",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "Digital Marketing",
     "Otomasi WhatsApp",
     "Tips UKM",
-    "Pemenang Karir",
+    "Sanyru",
   ],
   authors: [{ name: "M Septiawan" }],
   creator: "M Septiawan",
@@ -39,11 +39,11 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Pemenang Karir - Strategi Bisnis & Marketing",
+    title: "Sanyru - Strategi Bisnis & Marketing",
     description:
       "Belajar strategi bisnis dan digital marketing bersama M Septiawan.",
-    url: "https://blog-pemenangkarir.vercel.app",
-    siteName: "Pemenang Karir",
+    url: "https://blog-sanyru.vercel.app",
+    siteName: "Sanyru",
     locale: "id_ID",
     type: "website",
     images: [
@@ -51,13 +51,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Banner Pemenang Karir",
+        alt: "Banner Sanyru",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pemenang Karir",
+    title: "Sanyru",
     description: "Belajar strategi bisnis dan digital marketing.",
     images: ["/og-image.png"],
   },
@@ -81,13 +81,13 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Pemenang Karir Subscription",
+    name: "Sanyru Subscription",
     description:
       "Layanan edukasi strategi bisnis dan otomasi marketing bulanan.",
     provider: {
       "@type": "Organization",
-      name: "Pemenang Karir",
-      url: "https://blog-pemenangkarir.vercel.app",
+      name: "Sanyru",
+      url: "https://blog-sanyru.vercel.app",
     },
     offers: {
       "@type": "Offer",

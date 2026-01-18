@@ -34,7 +34,7 @@ export default function Home() {
           {/* Deskripsi Usaha */}
           <p className="max-w-2xl text-lg md:text-xl leading-relaxed text-slate-500 mb-12">
             Selamat datang di{" "}
-            <span className="text-slate-900 font-bold">PemenangKarir</span>.
+            <span className="text-slate-900 font-bold">Sanyru</span>.
             Kami membantu pemilik bisnis mengotomasi tugas repetitif, membangun
             sistem sales WhatsApp berbasis AI, dan memaksimalkan ROI melalui
             efisiensi teknologi modern.
